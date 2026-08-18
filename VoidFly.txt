@@ -1,5 +1,5 @@
 --[[
-    FLY GUI V3 — CAMERA-DIRECTION EDITION
+    VOID FLY + NOCLIP
     Fixed & Edited by Zikejo
 ]]
 
@@ -15,7 +15,9 @@ local mine = Instance.new("TextButton")
 local closebutton = Instance.new("TextButton")
 local mini = Instance.new("TextButton")
 local mini2 = Instance.new("TextButton")
+local noclipButton = Instance.new("TextButton")  -- НОВАЯ КНОПКА
 
+-- ======== DARK SPACE COLORS ========
 local colors = {
     bg = Color3.fromRGB(16, 4, 32),
     border = Color3.fromRGB(80, 30, 150),
@@ -32,52 +34,58 @@ main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 main.ResetOnSpawn = false
 
+-- ======== MAIN FRAME ========
 Frame.Parent = main
 Frame.BackgroundColor3 = colors.bg
 Frame.BorderColor3 = colors.border
 Frame.BorderSizePixel = 2
 Frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
-Frame.Size = UDim2.new(0, 190, 0, 57)
+Frame.Size = UDim2.new(0, 190, 0, 82)  -- увеличил высоту под кнопку
 Frame.BackgroundTransparency = 0.1
 
+-- ======== UP ========
 up.Name = "up"
 up.Parent = Frame
 up.BackgroundColor3 = colors.button
 up.BorderColor3 = colors.border
 up.BorderSizePixel = 1
 up.Size = UDim2.new(0, 44, 0, 28)
+up.Position = UDim2.new(0, 0, 0, 0)
 up.Font = Enum.Font.GothamBold
 up.Text = "▲ UP"
 up.TextColor3 = colors.text
 up.TextSize = 12
 Instance.new("UICorner", up).CornerRadius = UDim.new(0, 6)
 
+-- ======== DOWN ========
 down.Name = "down"
 down.Parent = Frame
 down.BackgroundColor3 = colors.button
 down.BorderColor3 = colors.border
 down.BorderSizePixel = 1
-down.Position = UDim2.new(0, 0, 0.491228074, 0)
 down.Size = UDim2.new(0, 44, 0, 28)
+down.Position = UDim2.new(0, 0, 0.491228074, 0)
 down.Font = Enum.Font.GothamBold
 down.Text = "▼ DOWN"
 down.TextColor3 = colors.text
 down.TextSize = 12
 Instance.new("UICorner", down).CornerRadius = UDim.new(0, 6)
 
+-- ======== FLY TOGGLE ========
 onof.Name = "onof"
 onof.Parent = Frame
 onof.BackgroundColor3 = colors.accent
 onof.BorderColor3 = colors.glow
 onof.BorderSizePixel = 1
-onof.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
 onof.Size = UDim2.new(0, 56, 0, 28)
+onof.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
 onof.Font = Enum.Font.GothamBold
 onof.Text = "✦ FLY"
 onof.TextColor3 = colors.text
 onof.TextSize = 13
 Instance.new("UICorner", onof).CornerRadius = UDim.new(0, 6)
 
+-- ======== TITLE ========
 TextLabel.Parent = Frame
 TextLabel.BackgroundColor3 = colors.dark
 TextLabel.BorderColor3 = colors.border
@@ -85,20 +93,21 @@ TextLabel.BorderSizePixel = 1
 TextLabel.Position = UDim2.new(0.469327301, 0, 0, 0)
 TextLabel.Size = UDim2.new(0, 100, 0, 28)
 TextLabel.Font = Enum.Font.GothamBold
-TextLabel.Text = "✦ CAM FLY"
+TextLabel.Text = "✦ VOID FLY"
 TextLabel.TextColor3 = colors.glow
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14
 TextLabel.TextWrapped = true
 Instance.new("UICorner", TextLabel).CornerRadius = UDim.new(0, 6)
 
+-- ======== PLUS ========
 plus.Name = "plus"
 plus.Parent = Frame
 plus.BackgroundColor3 = colors.button
 plus.BorderColor3 = colors.border
 plus.BorderSizePixel = 1
-plus.Position = UDim2.new(0.231578946, 0, 0, 0)
 plus.Size = UDim2.new(0, 45, 0, 28)
+plus.Position = UDim2.new(0.231578946, 0, 0, 0)
 plus.Font = Enum.Font.GothamBold
 plus.Text = "+"
 plus.TextColor3 = colors.text
@@ -106,13 +115,14 @@ plus.TextScaled = true
 plus.TextSize = 14
 Instance.new("UICorner", plus).CornerRadius = UDim.new(0, 6)
 
+-- ======== SPEED ========
 speed.Name = "speed"
 speed.Parent = Frame
 speed.BackgroundColor3 = colors.accent
 speed.BorderColor3 = colors.glow
 speed.BorderSizePixel = 1
-speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
 speed.Size = UDim2.new(0, 44, 0, 28)
+speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
 speed.Font = Enum.Font.GothamBold
 speed.Text = "1"
 speed.TextColor3 = colors.text
@@ -120,13 +130,14 @@ speed.TextScaled = true
 speed.TextSize = 14
 Instance.new("UICorner", speed).CornerRadius = UDim.new(0, 6)
 
+-- ======== MINUS ========
 mine.Name = "mine"
 mine.Parent = Frame
 mine.BackgroundColor3 = colors.button
 mine.BorderColor3 = colors.border
 mine.BorderSizePixel = 1
+mine.Size = UDim2.new(0, 45, 0, 28)
 mine.Position = UDim2.new(0.231578946, 0, 0.491228074, 0)
-mine.Size = UDim2.new(0, 45, 0, 29)
 mine.Font = Enum.Font.GothamBold
 mine.Text = "−"
 mine.TextColor3 = colors.text
@@ -134,6 +145,21 @@ mine.TextScaled = true
 mine.TextSize = 14
 Instance.new("UICorner", mine).CornerRadius = UDim.new(0, 6)
 
+-- ======== NOCLIP BUTTON ========
+noclipButton.Name = "noclip"
+noclipButton.Parent = Frame
+noclipButton.BackgroundColor3 = colors.button
+noclipButton.BorderColor3 = colors.border
+noclipButton.BorderSizePixel = 1
+noclipButton.Size = UDim2.new(0, 160, 0, 28)
+noclipButton.Position = UDim2.new(0.08, 0, 0.85, 0)
+noclipButton.Font = Enum.Font.GothamBold
+noclipButton.Text = "NOCLIP: OFF"
+noclipButton.TextColor3 = colors.text
+noclipButton.TextSize = 13
+Instance.new("UICorner", noclipButton).CornerRadius = UDim.new(0, 6)
+
+-- ======== CLOSE ========
 closebutton.Name = "Close"
 closebutton.Parent = main.Frame
 closebutton.BackgroundColor3 = colors.danger
@@ -150,6 +176,7 @@ closebutton.TextXAlignment = Enum.TextXAlignment.Center
 closebutton.TextYAlignment = Enum.TextYAlignment.Center
 Instance.new("UICorner", closebutton).CornerRadius = UDim.new(1, 0)
 
+-- ======== MINIMIZE ========
 mini.Name = "minimize"
 mini.Parent = main.Frame
 mini.BackgroundColor3 = colors.button
@@ -166,6 +193,7 @@ mini.TextXAlignment = Enum.TextXAlignment.Center
 mini.TextYAlignment = Enum.TextYAlignment.Center
 Instance.new("UICorner", mini).CornerRadius = UDim.new(1, 0)
 
+-- ======== MINIMIZE 2 ========
 mini2.Name = "minimize2"
 mini2.Parent = main.Frame
 mini2.BackgroundColor3 = colors.button
@@ -187,10 +215,63 @@ Instance.new("UICorner", mini2).CornerRadius = UDim.new(1, 0)
 speeds = 1
 local player = game.Players.LocalPlayer
 local flying = false
+local noclipEnabled = false
 local bodyVelocity = nil
 local bodyGyro = nil
 local heartbeatConnection = nil
+local noclipConnections = {}
 
+-- ======== NOCLIP FUNCTIONS ========
+function toggleNoclip()
+    noclipEnabled = not noclipEnabled
+    if noclipEnabled then
+        noclipButton.Text = "NOCLIP: ON"
+        noclipButton.BackgroundColor3 = Color3.fromRGB(60, 0, 100)
+        enableNoclip()
+    else
+        noclipButton.Text = "NOCLIP: OFF"
+        noclipButton.BackgroundColor3 = colors.button
+        disableNoclip()
+    end
+end
+
+function enableNoclip()
+    local char = player.Character
+    if not char then return end
+    for _, part in pairs(char:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+    local conn = game:GetService("RunService").Stepped:Connect(function()
+        if not noclipEnabled then return end
+        local char = player.Character
+        if not char then return end
+        for _, part in pairs(char:GetDescendants()) do
+            if part:IsA("BasePart") and part.CanCollide then
+                part.CanCollide = false
+            end
+        end
+    end)
+    table.insert(noclipConnections, conn)
+end
+
+function disableNoclip()
+    for _, conn in pairs(noclipConnections) do
+        conn:Disconnect()
+    end
+    noclipConnections = {}
+    local char = player.Character
+    if char then
+        for _, part in pairs(char:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = true
+            end
+        end
+    end
+end
+
+-- ======== FLIGHT FUNCTIONS ========
 function startFly()
     if flying then return end
     local char = player.Character
@@ -215,9 +296,7 @@ function startFly()
     local camera = workspace.CurrentCamera
 
     heartbeatConnection = game:GetService("RunService").Heartbeat:Connect(function()
-        if not flying or not root or not root.Parent then
-            return
-        end
+        if not flying or not root or not root.Parent then return end
 
         local forward = camera.CFrame.LookVector
         local right = camera.CFrame.RightVector
@@ -229,17 +308,15 @@ function startFly()
         if UIS:IsKeyDown(Enum.KeyCode.S) then move = move - forward end
         if UIS:IsKeyDown(Enum.KeyCode.A) then move = move - right end
         if UIS:IsKeyDown(Enum.KeyCode.D) then move = move + right end
-
-        if UIS:IsKeyDown(Enum.KeyCode.LeftShift) then
-            bodyVelocity.MaxForce = Vector3.new(1e9, 1e9, 1e9)
-            bodyVelocity.Velocity = move.Unit * (speeds * 30)
-        end
+        if UIS:IsKeyDown(Enum.KeyCode.Space) then move = move + up end
+        if UIS:IsKeyDown(Enum.KeyCode.LeftShift) then move = move - up end
 
         if move.Magnitude > 0 then
             move = move.Unit * (speeds * 20)
         end
 
         bodyVelocity.Velocity = move
+        bodyGyro.CFrame = CFrame.lookAt(root.Position, root.Position + forward)
     end)
 end
 
@@ -257,6 +334,7 @@ function stopFly()
     if heartbeatConnection then heartbeatConnection:Disconnect(); heartbeatConnection = nil end
 end
 
+-- ======== GUI EVENTS ========
 onof.MouseButton1Down:connect(function()
     if flying then
         stopFly()
@@ -267,14 +345,15 @@ onof.MouseButton1Down:connect(function()
     end
 end)
 
+noclipButton.MouseButton1Down:connect(toggleNoclip)
+
 up.MouseButton1Down:connect(function()
     if flying then
         local char = player.Character
         if char then
             local root = char:FindFirstChild("HumanoidRootPart")
             if root then
-                local cam = workspace.CurrentCamera
-                root.CFrame = root.CFrame + cam.CFrame.UpVector * 3
+                root.CFrame = root.CFrame + workspace.CurrentCamera.CFrame.UpVector * 3
             end
         end
     end
@@ -286,8 +365,7 @@ down.MouseButton1Down:connect(function()
         if char then
             local root = char:FindFirstChild("HumanoidRootPart")
             if root then
-                local cam = workspace.CurrentCamera
-                root.CFrame = root.CFrame - cam.CFrame.UpVector * 3
+                root.CFrame = root.CFrame - workspace.CurrentCamera.CFrame.UpVector * 3
             end
         end
     end
@@ -317,6 +395,7 @@ end)
 
 closebutton.MouseButton1Click:Connect(function()
     if flying then stopFly() end
+    if noclipEnabled then disableNoclip() end
     main:Destroy()
 end)
 
@@ -327,6 +406,7 @@ mini.MouseButton1Click:Connect(function()
     plus.Visible = false
     speed.Visible = false
     mine.Visible = false
+    noclipButton.Visible = false
     mini.Visible = false
     mini2.Visible = true
     main.Frame.BackgroundTransparency = 1
@@ -341,6 +421,7 @@ mini2.MouseButton1Click:Connect(function()
     plus.Visible = true
     speed.Visible = true
     mine.Visible = true
+    noclipButton.Visible = true
     mini.Visible = true
     mini2.Visible = false
     main.Frame.BackgroundTransparency = 0
@@ -353,10 +434,17 @@ player.CharacterAdded:Connect(function()
         stopFly()
         onof.Text = "✦ FLY"
     end
+    if noclipEnabled then
+        disableNoclip()
+        noclipEnabled = false
+        noclipButton.Text = "NOCLIP: OFF"
+        noclipButton.BackgroundColor3 = colors.button
+    end
 end)
 
+-- ======== NOTIFICATION ========
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "✦ CAM FLY",
+    Title = "✦ VOID FLY + NOCLIP",
     Text = "BY ZIKEJO",
     Duration = 3
 })
