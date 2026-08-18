@@ -1,7 +1,8 @@
 --[[
     FLY GUI V3 — DARK SPACE EDITION
     Original by XNEOFF
-    Recolor & Rename by DeepSeek
+    Recolor & Redesign by DeepSeek
+    Edited by Zikejo
 ]]
 
 local main = Instance.new("ScreenGui")
@@ -19,15 +20,15 @@ local mini2 = Instance.new("TextButton")
 
 -- ======== DARK SPACE COLORS ========
 local colors = {
-    bg = Color3.fromRGB(16, 4, 32),          -- глубокий фиолетово-чёрный
-    border = Color3.fromRGB(80, 30, 150),    -- тёмно-фиолетовая обводка
-    accent = Color3.fromRGB(50, 20, 100),    -- фиолетовый акцент
-    glow = Color3.fromRGB(130, 70, 220),     -- неоновое свечение
-    text = Color3.fromRGB(200, 180, 255),    -- светлый фиолетово-белый
-    button = Color3.fromRGB(30, 10, 60),     -- кнопка
-    buttonHover = Color3.fromRGB(90, 40, 180), -- наведение
-    danger = Color3.fromRGB(80, 0, 20),      -- тёмно-бордовый
-    dark = Color3.fromRGB(10, 5, 20),        -- почти чёрный
+    bg = Color3.fromRGB(16, 4, 32),
+    border = Color3.fromRGB(80, 30, 150),
+    accent = Color3.fromRGB(50, 20, 100),
+    glow = Color3.fromRGB(130, 70, 220),
+    text = Color3.fromRGB(200, 180, 255),
+    button = Color3.fromRGB(30, 10, 60),
+    buttonHover = Color3.fromRGB(90, 40, 180),
+    danger = Color3.fromRGB(80, 0, 20),
+    dark = Color3.fromRGB(10, 5, 20),
 }
 
 main.Name = "main"
@@ -56,6 +57,10 @@ up.Text = "▲ UP"
 up.TextColor3 = colors.text
 up.TextSize = 12
 
+local upCorner = Instance.new("UICorner")
+upCorner.CornerRadius = UDim.new(0, 6)
+upCorner.Parent = up
+
 -- ======== DOWN BUTTON ========
 down.Name = "down"
 down.Parent = Frame
@@ -69,6 +74,10 @@ down.Text = "▼ DOWN"
 down.TextColor3 = colors.text
 down.TextSize = 12
 
+local downCorner = Instance.new("UICorner")
+downCorner.CornerRadius = UDim.new(0, 6)
+downCorner.Parent = down
+
 -- ======== FLY TOGGLE ========
 onof.Name = "onof"
 onof.Parent = Frame
@@ -81,6 +90,10 @@ onof.Font = Enum.Font.GothamBold
 onof.Text = "✦ FLY"
 onof.TextColor3 = colors.text
 onof.TextSize = 13
+
+local onofCorner = Instance.new("UICorner")
+onofCorner.CornerRadius = UDim.new(0, 6)
+onofCorner.Parent = onof
 
 -- ======== TITLE ========
 TextLabel.Parent = Frame
@@ -96,6 +109,10 @@ TextLabel.TextScaled = true
 TextLabel.TextSize = 14
 TextLabel.TextWrapped = true
 
+local titleCorner = Instance.new("UICorner")
+titleCorner.CornerRadius = UDim.new(0, 6)
+titleCorner.Parent = TextLabel
+
 -- ======== PLUS ========
 plus.Name = "plus"
 plus.Parent = Frame
@@ -109,6 +126,10 @@ plus.Text = "+"
 plus.TextColor3 = colors.text
 plus.TextScaled = true
 plus.TextSize = 14
+
+local plusCorner = Instance.new("UICorner")
+plusCorner.CornerRadius = UDim.new(0, 6)
+plusCorner.Parent = plus
 
 -- ======== SPEED DISPLAY ========
 speed.Name = "speed"
@@ -124,6 +145,10 @@ speed.TextColor3 = colors.text
 speed.TextScaled = true
 speed.TextSize = 14
 
+local speedCorner = Instance.new("UICorner")
+speedCorner.CornerRadius = UDim.new(0, 6)
+speedCorner.Parent = speed
+
 -- ======== MINUS ========
 mine.Name = "mine"
 mine.Parent = Frame
@@ -138,13 +163,17 @@ mine.TextColor3 = colors.text
 mine.TextScaled = true
 mine.TextSize = 14
 
--- ======== CLOSE BUTTON (КРУГЛЫЙ КРЕСТИК) ========
+local mineCorner = Instance.new("UICorner")
+mineCorner.CornerRadius = UDim.new(0, 6)
+mineCorner.Parent = mine
+
+-- ======== CLOSE BUTTON (КРУГЛЫЙ) ========
 closebutton.Name = "Close"
 closebutton.Parent = main.Frame
 closebutton.BackgroundColor3 = colors.danger
 closebutton.BorderColor3 = colors.glow
 closebutton.BorderSizePixel = 2
-closebutton.Size = UDim2.new(0, 28, 0, 28)  -- квадрат, но скруглим
+closebutton.Size = UDim2.new(0, 28, 0, 28)
 closebutton.Position = UDim2.new(0, 0, -1, 27)
 closebutton.Font = Enum.Font.GothamBold
 closebutton.Text = "✕"
@@ -154,19 +183,18 @@ closebutton.TextScaled = false
 closebutton.TextXAlignment = Enum.TextXAlignment.Center
 closebutton.TextYAlignment = Enum.TextYAlignment.Center
 
--- Делаем круглым
 local closeCorner = Instance.new("UICorner")
-closeCorner.CornerRadius = UDim.new(1, 0)  -- полный круг
+closeCorner.CornerRadius = UDim.new(1, 0)
 closeCorner.Parent = closebutton
 
--- ======== MINIMIZE ========
+-- ======== MINIMIZE (КРУГЛЫЙ) ========
 mini.Name = "minimize"
 mini.Parent = main.Frame
 mini.BackgroundColor3 = colors.button
 mini.BorderColor3 = colors.border
 mini.BorderSizePixel = 1
 mini.Size = UDim2.new(0, 28, 0, 28)
-mini.Position = UDim2.new(0, 30, -1, 27)  -- сдвинут, чтобы не мешать крестику
+mini.Position = UDim2.new(0, 30, -1, 27)
 mini.Font = Enum.Font.GothamBold
 mini.Text = "−"
 mini.TextColor3 = colors.text
@@ -176,7 +204,7 @@ mini.TextXAlignment = Enum.TextXAlignment.Center
 mini.TextYAlignment = Enum.TextYAlignment.Center
 
 local miniCorner = Instance.new("UICorner")
-miniCorner.CornerRadius = UDim.new(1, 0)  -- тоже круглый
+miniCorner.CornerRadius = UDim.new(1, 0)
 miniCorner.Parent = mini
 
 -- ======== MINIMIZE 2 (SHOW) ========
@@ -208,10 +236,10 @@ local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 nowe = false
 tpwalking = false
 
--- ======== NOTIFICATION ========
+-- ======== NOTIFICATION (Zikejo) ========
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "✦ DARK FLY";
-    Text = "BY XNEOFF • DARK EDITION";
+    Title = "✦ DARK FLY",
+    Text = "BY ZIKEJO",
     Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
 })
 Duration = 5
@@ -486,7 +514,7 @@ mine.MouseButton1Down:connect(function()
     end
 end)
 
--- ======== CLOSE (КРУГЛЫЙ КРЕСТИК) ========
+-- ======== CLOSE ========
 closebutton.MouseButton1Click:Connect(function()
     main:Destroy()
 end)
